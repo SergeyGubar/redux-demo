@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/authFragment"
+    >
+
+    <fragment
+        android:id="@+id/authFragment"
+        android:name="io.gubarsergey.auth.ui.AuthFragment"
+        tools:layout="@layout/fragment_auth"
+        android:label="@string/login"
+        >
+        <action
+            android:id="@+id/goToCustomerOrders"
+            app:destination="@id/ordersFragment"
+            />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/ordersFragment"
+        tools:layout="@layout/fragment_orders_customer"
+        android:name="io.gubarsergey.orders.OrdersFragment"
+        android:label="@string/your_orders"
+        />
+
+
+</navigation>

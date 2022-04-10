@@ -1,6 +1,7 @@
 package io.gubarsergey.auth
 
 import io.gubarsergey.ReduxAppState
+import io.gubarsergey.Router
 import io.gubarsergey.auth.service.AuthAPI
 import io.gubarsergey.auth.service.AuthRequestDto
 import io.gubarsergey.redux.Middleware
@@ -28,7 +29,10 @@ class AuthMiddleware(
                             authApi.login(AuthRequestDto(state.auth.email, state.auth.password))
                         }
                         result.fold(
-                            onSuccess = { core.dispatch(AuthSuccess(it.access_token)) },
+                            onSuccess = {
+                                Router.goToOrdersCustomer()
+                                core.dispatch(AuthSuccess(it.access_token))
+                            },
                             onFailure = { core.dispatch(AuthFailed) }
                         )
                         Timber.d("Result $result")

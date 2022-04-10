@@ -26,6 +26,8 @@ class ReduxCore<AppState>(
         Reduce.state
     )
 
+    val state get() = store.appState()
+
     private val configurators = mutableListOf<Configurator>()
 
     fun withConfigurators(newConfigurators: Iterable<Configurator>) {

@@ -1,6 +1,11 @@
 <resources>
     <string name="app_name">Redux Demo</string>
     <string name="login">Login</string>
+    <string name="my_orders">My orders</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
+    <string name="your_orders">Your orders</string>
+    <string name="placed_by">Placed by:</string>
+    <string name="placed_date">Placed date:</string>
+    <string name="deadline">Deadline:</string>
 </resources>

@@ -11,6 +11,11 @@ import io.gubarsergey.counter.CounterConfigurator
 import io.gubarsergey.counter.IncrementCounterAction
 import io.gubarsergey.di.authModule
 import io.gubarsergey.di.networkModule
+import io.gubarsergey.di.ordersModule
+import io.gubarsergey.orders.OrdersConfigurator
+import io.gubarsergey.orders.OrdersMiddleware
+import io.gubarsergey.orders.OrdersState
+import io.gubarsergey.orders.orders
 import io.gubarsergey.redux.Middleware
 import io.gubarsergey.redux.ReduxCore
 import io.gubarsergey.redux.redux.Reduce
@@ -37,7 +42,8 @@ class ReduxDemoApp : Application() {
             modules(
                 listOf(
                     networkModule,
-                    authModule
+                    authModule,
+                    ordersModule
                 )
             )
         }
@@ -45,10 +51,14 @@ class ReduxDemoApp : Application() {
 
     private fun redux() {
         core = setupRedux(
-            defaultState = ReduxAppState(auth = AuthState.default),
+            defaultState = ReduxAppState(
+                auth = AuthState.default,
+                myOrders = OrdersState.default,
+            ),
             applyReducers = { state, action ->
-                state.copy(
-                    auth = Reduce.authState(state.auth, action)
+                ReduxAppState(
+                    auth = Reduce.authState(state.auth, action),
+                    myOrders = Reduce.orders(state.myOrders, action),
                 )
             },
             runOnUiThread = { action ->
@@ -59,13 +69,15 @@ class ReduxDemoApp : Application() {
                 listOf(
                     LoggingMiddleware,
                     AnalyticsMiddleware,
-                    AuthMiddleware(this)
+                    AuthMiddleware(this),
+                    OrdersMiddleware(this),
                 )
             )
             withConfigurators(
                 listOf(
                     CounterConfigurator(this),
-                    AuthConfigurator(this)
+                    AuthConfigurator(this),
+                    OrdersConfigurator(this),
                 )
             )
         }

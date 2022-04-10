@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginVertical="8dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="8dp"
+    android:layout_height="wrap_content"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <com.google.android.material.textview.MaterialTextView
+            android:text="@string/placed_by"
+            android:textStyle="bold"
+            android:textAppearance="?attr/textAppearanceBody1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/placedByTextView"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            />
+
+        <TextView
+            tools:text="COMPLETED"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?attr/textAppearanceBody1"
+            android:id="@+id/statusTextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            />
+
+        <TextView
+            android:text="@string/placed_date"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:textAppearance="?attr/textAppearanceBody1"
+            android:layout_height="wrap_content"
+            android:id="@+id/datePlacedTextView"
+            app:layout_constraintTop_toBottomOf="@+id/placedByTextView"
+            app:layout_constraintStart_toStartOf="@+id/placedByTextView"
+            android:layout_marginTop="8dp"
+            />
+
+        <TextView
+            android:text="@string/deadline"
+            android:textAppearance="?attr/textAppearanceBody1"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/deadlineTextView"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/datePlacedTextView"
+            app:layout_constraintStart_toStartOf="@+id/datePlacedTextView"
+            />
+
+        <TextView
+            tools:text="John Doe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/placedByValueTextView"
+            android:textAppearance="?attr/textAppearanceBody1"
+            app:layout_constraintTop_toTopOf="@+id/placedByTextView"
+            app:layout_constraintStart_toEndOf="@+id/placedByTextView"
+            app:layout_constraintBottom_toBottomOf="@+id/placedByTextView"
+            android:layout_marginStart="8dp"
+            />
+
+        <TextView
+            tools:text="18.09.22"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?attr/textAppearanceBody1"
+            android:id="@+id/placedDateValueTextView"
+            app:layout_constraintTop_toTopOf="@+id/datePlacedTextView"
+            app:layout_constraintBottom_toBottomOf="@+id/datePlacedTextView"
+            app:layout_constraintStart_toEndOf="@+id/datePlacedTextView"
+            android:layout_marginStart="8dp"
+            />
+
+        <TextView
+            tools:text="19.02.22"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?attr/textAppearanceBody1"
+            android:id="@+id/placedByDeadlineValueTextView"
+            app:layout_constraintTop_toTopOf="@+id/deadlineTextView"
+            app:layout_constraintBottom_toBottomOf="@+id/deadlineTextView"
+            app:layout_constraintStart_toEndOf="@+id/deadlineTextView"
+            android:layout_marginStart="8dp"
+            />
+
+        <TextView
+            tools:text="120 BPM"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/bpmTextView"
+            android:textAppearance="?attr/textAppearanceBody1"
+            app:layout_constraintTop_toBottomOf="@+id/statusTextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="8dp"
+            />
+
+        <TextView
+            tools:text="Hip-Hop, Rap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/genresTextView"
+            android:textAppearance="?attr/textAppearanceBody1"
+            app:layout_constraintEnd_toEndOf="@+id/bpmTextView"
+            app:layout_constraintTop_toBottomOf="@+id/bpmTextView"
+            android:layout_marginTop="8dp"
+            />
+
+        <TextView
+            tools:text="Some general comment"
+            android:textAppearance="?attr/textAppearanceBody2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/commentTextView"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/deadlineTextView"
+            app:layout_constraintStart_toStartOf="@+id/deadlineTextView"
+            app:layout_constraintEnd_toEndOf="@+id/genresTextView"
+            android:layout_marginTop="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</com.google.android.material.card.MaterialCardView>
