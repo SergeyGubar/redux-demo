@@ -6,6 +6,7 @@ import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import io.gubarsergey.BottomBarController
 import io.gubarsergey.base.BaseFragment
 import io.gubarsergey.databinding.FragmentOrdersCustomerBinding
 import io.gubarsergey.verticalLinearLayoutManager
@@ -22,6 +23,8 @@ class OrdersFragment : BaseFragment<FragmentOrdersCustomerBinding, OrdersProps>(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (context as? BottomBarController)?.showBottomBar()
+
         binding.myOrdersRecycler.adapter = adapter
         binding.myOrdersRecycler.verticalLinearLayoutManager()
 

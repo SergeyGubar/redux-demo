@@ -1,8 +1,11 @@
 package io.gubarsergey.auth.ui
 
+import android.os.Bundle
 import android.text.TextWatcher
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import io.gubarsergey.BottomBarController
 import io.gubarsergey.base.BaseFragment
 import io.gubarsergey.bind
 import io.gubarsergey.click
@@ -20,6 +23,11 @@ class AuthFragment : BaseFragment<FragmentAuthBinding, AuthProps>() {
 
     private var emailWatcher: TextWatcher? = null
     private var passwordWatcher: TextWatcher? = null
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        (context as? BottomBarController)?.hideBottomBar()
+    }
 
     override fun getFragmentBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentAuthBinding {
         return FragmentAuthBinding.inflate(inflater, container, false)

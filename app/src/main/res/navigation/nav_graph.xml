@@ -27,5 +27,19 @@
         android:label="@string/your_orders"
         />
 
+    <fragment
+        android:id="@+id/availableArtistsFragment"
+        android:name="io.gubarsergey.artists.AvailableArtistsFragment"
+        android:label="AvailableArtistsFragment"
+        tools:layout="@layout/fragment_artists"
+        />
+
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="io.gubarsergey.settings.SettingsFragment"
+        android:label="SettingsFragment"
+        tools:layout="@layout/fragment_settings"
+        />
+
 
 </navigation>

@@ -17,6 +17,27 @@
                             <option name="y" value="44" />
                           </Point>
                         </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="goToCustomerOrders">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="availableArtistsFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="-294" />
+                            <option name="y" value="112" />
+                          </Point>
+                        </option>
                       </LayoutPositions>
                     </value>
                   </entry>
@@ -27,6 +48,18 @@
                           <Point>
                             <option name="x" value="-220" />
                             <option name="y" value="-230" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="settingsFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="-324" />
+                            <option name="y" value="429" />
                           </Point>
                         </option>
                       </LayoutPositions>
