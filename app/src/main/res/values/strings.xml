@@ -10,4 +10,6 @@
     <string name="placed_by">Placed by:</string>
     <string name="placed_date">Placed date:</string>
     <string name="deadline">Deadline:</string>
+    <string name="average_rating">Average rating:</string>
+    <string name="number_of_ratings">Ratings count:</string>
 </resources>

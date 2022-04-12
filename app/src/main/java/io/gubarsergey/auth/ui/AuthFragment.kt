@@ -6,12 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import io.gubarsergey.BottomBarController
-import io.gubarsergey.base.BaseFragment
+import io.gubarsergey.base.BaseFragmentWithProps
 import io.gubarsergey.bind
 import io.gubarsergey.click
 import io.gubarsergey.databinding.FragmentAuthBinding
 import io.gubarsergey.redux.operations.Command
-import timber.log.Timber
 
 data class AuthProps(
     val login: Command,
@@ -19,7 +18,7 @@ data class AuthProps(
     val passwordChanged: Command.With<String>,
 )
 
-class AuthFragment : BaseFragment<FragmentAuthBinding, AuthProps>() {
+class AuthFragment : BaseFragmentWithProps<FragmentAuthBinding, AuthProps>() {
 
     private var emailWatcher: TextWatcher? = null
     private var passwordWatcher: TextWatcher? = null

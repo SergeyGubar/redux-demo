@@ -7,12 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import io.gubarsergey.BottomBarController
-import io.gubarsergey.base.BaseFragment
+import io.gubarsergey.base.BaseFragmentWithProps
 import io.gubarsergey.databinding.FragmentOrdersCustomerBinding
 import io.gubarsergey.verticalLinearLayoutManager
 import timber.log.Timber
 
-class OrdersFragment : BaseFragment<FragmentOrdersCustomerBinding, OrdersProps>() {
+class OrdersFragment : BaseFragmentWithProps<FragmentOrdersCustomerBinding, OrdersProps>() {
 
     private val handler = Handler(Looper.getMainLooper())
     private val adapter = OrdersRecyclerAdapter()

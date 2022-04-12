@@ -29,7 +29,7 @@
 
     <fragment
         android:id="@+id/availableArtistsFragment"
-        android:name="io.gubarsergey.artists.AvailableArtistsFragment"
+        android:name="io.gubarsergey.artists.ui.AvailableArtistsFragment"
         android:label="AvailableArtistsFragment"
         tools:layout="@layout/fragment_artists"
         />

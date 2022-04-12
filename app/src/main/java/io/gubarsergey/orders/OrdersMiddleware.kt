@@ -19,9 +19,18 @@ class OrdersMiddleware(private val core: ReduxCore<ReduxAppState>) : Middleware 
             is LoadMyOrders -> {
                 launch {
                     withContext(Dispatchers.IO) {
-                        val token = "Bearer ${core.state.auth.token}"
-                        val orders = api.myOrders(token)
-                        core.dispatch(OrdersLoaded(orders.orders))
+                        val token = core.state.auth.token.bearerFormatted
+                        val result = runCatching {
+                            api.myOrders(token)
+                        }
+                        result.fold(
+                            onSuccess = {
+                                core.dispatch(OrdersLoaded(it.orders))
+                            },
+                            onFailure = {
+                                core.dispatch(OrdersLoadFailed)
+                            }
+                        )
                     }
                 }
             }

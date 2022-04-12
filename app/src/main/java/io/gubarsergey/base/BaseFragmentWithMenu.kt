@@ -4,7 +4,7 @@ import android.view.Menu
 import android.view.MenuInflater
 import androidx.viewbinding.ViewBinding
 
-abstract class BaseFragmentWithMenu<BINDING : ViewBinding, PROPS> : BaseFragment<BINDING, PROPS>() {
+abstract class BaseFragmentWithMenu<BINDING : ViewBinding, PROPS> : BaseFragmentWithProps<BINDING, PROPS>() {
 
     abstract val menuResource: Int
 

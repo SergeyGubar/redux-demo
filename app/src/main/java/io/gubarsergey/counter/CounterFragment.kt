@@ -2,7 +2,7 @@ package io.gubarsergey.counter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import io.gubarsergey.base.BaseFragment
+import io.gubarsergey.base.BaseFragmentWithProps
 import io.gubarsergey.databinding.FragmentCounterBinding
 import io.gubarsergey.redux.operations.Command
 
@@ -11,7 +11,7 @@ data class CounterProps(
     val increment: Command,
 )
 
-class CounterFragment : BaseFragment<FragmentCounterBinding, CounterProps>() {
+class CounterFragment : BaseFragmentWithProps<FragmentCounterBinding, CounterProps>() {
 
     override fun getFragmentBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentCounterBinding {
         return FragmentCounterBinding.inflate(inflater, container, false)

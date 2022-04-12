@@ -3,15 +3,22 @@ package io.gubarsergey
 import android.app.Application
 import android.os.Handler
 import android.os.Looper
+import io.gubarsergey.artists.AvailableArtistsConfigurator
+import io.gubarsergey.artists.AvailableArtistsConnector
+import io.gubarsergey.artists.AvailableArtistsState
+import io.gubarsergey.artists.availableArtists
+import io.gubarsergey.artists.service.AvailableArtistsMiddleware
 import io.gubarsergey.auth.AuthConfigurator
 import io.gubarsergey.auth.AuthMiddleware
 import io.gubarsergey.auth.AuthState
 import io.gubarsergey.auth.authState
 import io.gubarsergey.counter.CounterConfigurator
 import io.gubarsergey.counter.IncrementCounterAction
+import io.gubarsergey.di.artistsModule
 import io.gubarsergey.di.authModule
 import io.gubarsergey.di.networkModule
 import io.gubarsergey.di.ordersModule
+import io.gubarsergey.di.utilsModule
 import io.gubarsergey.orders.OrdersConfigurator
 import io.gubarsergey.orders.OrdersMiddleware
 import io.gubarsergey.orders.OrdersState
@@ -21,6 +28,7 @@ import io.gubarsergey.redux.ReduxCore
 import io.gubarsergey.redux.redux.Reduce
 import io.gubarsergey.redux.redux.ReduxAction
 import io.gubarsergey.redux.setupRedux
+import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import timber.log.Timber
 
@@ -39,11 +47,14 @@ class ReduxDemoApp : Application() {
 
     private fun koin() {
         startKoin {
+            androidContext(this@ReduxDemoApp)
             modules(
                 listOf(
+                    utilsModule,
                     networkModule,
                     authModule,
-                    ordersModule
+                    ordersModule,
+                    artistsModule,
                 )
             )
         }
@@ -54,11 +65,13 @@ class ReduxDemoApp : Application() {
             defaultState = ReduxAppState(
                 auth = AuthState.default,
                 myOrders = OrdersState.default,
+                availableArtists = AvailableArtistsState.default,
             ),
             applyReducers = { state, action ->
                 ReduxAppState(
                     auth = Reduce.authState(state.auth, action),
                     myOrders = Reduce.orders(state.myOrders, action),
+                    availableArtists = Reduce.availableArtists(state.availableArtists, action)
                 )
             },
             runOnUiThread = { action ->
@@ -71,6 +84,7 @@ class ReduxDemoApp : Application() {
                     AnalyticsMiddleware,
                     AuthMiddleware(this),
                     OrdersMiddleware(this),
+                    AvailableArtistsMiddleware(this),
                 )
             )
             withConfigurators(
@@ -78,6 +92,7 @@ class ReduxDemoApp : Application() {
                     CounterConfigurator(this),
                     AuthConfigurator(this),
                     OrdersConfigurator(this),
+                    AvailableArtistsConfigurator(this),
                 )
             )
         }

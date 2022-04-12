@@ -5,6 +5,8 @@ import io.gubarsergey.redux.redux.ReduxAction
 
 data class OrdersLoaded(
     val orders: List<MyOrderDto>
-): ReduxAction
+) : ReduxAction
+
+object OrdersLoadFailed : ReduxAction
 
 object LoadMyOrders : ReduxAction
