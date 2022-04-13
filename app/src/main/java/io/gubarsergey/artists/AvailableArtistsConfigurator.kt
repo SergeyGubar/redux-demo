@@ -47,10 +47,41 @@ class AvailableArtistsConnector(private val core: ReduxCore<ReduxAppState>) : Ba
                     email = stateArtist.email,
                     genres = stateArtist.genres,
                     averageRating = stateArtist.ratingInfo.averageRating,
-                    ratingCount = stateArtist.ratingInfo.numberOfRatings
+                    ratingCount = stateArtist.ratingInfo.numberOfRatings,
+                    makeAnOrder = Command.nop(),
                 )
+            }.appliedFilters(appState),
+            viewLoaded = core.bind(LoadAvailableArtists),
+            selectNoneFilter = core.bind(AvailableArtistsFilterReset),
+            selectBestRatingFilter = core.bind(AvailableArtistsBestRatingSelected),
+            selectMostOrdersFilter = core.bind(AvailableArtistsMostOrdersSelected),
+            filter = when (appState.availableArtists.appliedFilter) {
+                AvailableArtistsState.ArtistFilter.NONE        -> AvailableArtistsProps.Filter.NONE
+                AvailableArtistsState.ArtistFilter.BEST_RATING -> AvailableArtistsProps.Filter.BEST_RATING
+                AvailableArtistsState.ArtistFilter.MOST_ORDERS -> AvailableArtistsProps.Filter.MOST_ORDERS
             },
-            viewLoaded = Command(action = { core.dispatch(LoadAvailableArtists) }),
+            chips = appState.availableArtists.genresSelection.mapValues { (genre, isChecked) ->
+                AvailableArtistsProps.ChipInfo(core.bind(AvailableArtistsGenreSelection(genre)), isChecked)
+            }
         )
+    }
+
+    private fun List<AvailableArtistsProps.ArtistProps>.appliedFilters(state: ReduxAppState): List<AvailableArtistsProps.ArtistProps> {
+        val filtered = when (state.availableArtists.appliedFilter) {
+            AvailableArtistsState.ArtistFilter.NONE        -> this
+            AvailableArtistsState.ArtistFilter.BEST_RATING -> this.sortedByDescending { it.averageRating }
+            AvailableArtistsState.ArtistFilter.MOST_ORDERS -> this.sortedByDescending { it.ratingCount }
+        }
+
+        val shouldFilterByGenre = state.availableArtists.genresSelection.any { it.value }
+        val selectedGenres = state.availableArtists.genresSelection.filter { it.value }.map { it.key }
+
+        val filteredByGenre = when {
+            shouldFilterByGenre -> filtered.filter {
+                it.genres.containsAll(selectedGenres)
+            }
+            else -> filtered
+        }
+        return filteredByGenre
     }
 }

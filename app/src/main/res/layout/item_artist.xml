@@ -13,6 +13,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingBottom="8dp"
         >
 
         <com.google.android.material.textview.MaterialTextView
@@ -96,12 +97,21 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/profileDescriptionTextView"
-            android:layout_marginBottom="16dp"
             app:layout_constraintTop_toBottomOf="@+id/ratingsCountTextView"
             app:layout_constraintStart_toStartOf="@+id/ratingsCountTextView"
             app:layout_constraintEnd_toEndOf="@+id/genresTextView"
             android:layout_marginTop="16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+        <Button
+            android:text="@string/make_an_order"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/makeOrderButton"
+            app:layout_constraintTop_toBottomOf="@+id/profileDescriptionTextView"
+            app:layout_constraintStart_toStartOf="@+id/profileDescriptionTextView"
+            app:layout_constraintEnd_toEndOf="@+id/profileDescriptionTextView"
+            android:layout_marginTop="16dp"
             />
 
 

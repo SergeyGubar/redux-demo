@@ -30,7 +30,7 @@ class OrdersFragment : BaseFragmentWithProps<FragmentOrdersCustomerBinding, Orde
 
         handler.postDelayed({
             props.value?.viewLoaded?.invoke()
-        }, 1000)
+        }, 300)
     }
 
     override fun render(props: OrdersProps) {

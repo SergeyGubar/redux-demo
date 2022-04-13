@@ -12,4 +12,16 @@
     <string name="deadline">Deadline:</string>
     <string name="average_rating">Average rating:</string>
     <string name="number_of_ratings">Ratings count:</string>
+    <string name="make_an_order">Make an order</string>
+    <string name="filters">Filters</string>
+    <string name="best_rating">Best rating</string>
+    <string name="most_orders">Most orders</string>
+    <string name="none">None</string>
+    <string name="hip_hop">Hip-Hop</string>
+    <string name="pop">Pop</string>
+    <string name="rap">Rap</string>
+    <string name="metal">Metal</string>
+    <string name="folk">Folk</string>
+
+
 </resources>
