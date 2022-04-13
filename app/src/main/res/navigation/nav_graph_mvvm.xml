@@ -13,8 +13,17 @@
         android:label="@string/login"
         >
 
+        <action
+            android:id="@+id/goToOrdersMvvm"
+            app:destination="@id/ordersMvvmFragment"
+            />
     </fragment>
 
+    <fragment
+        android:id="@+id/ordersMvvmFragment"
+        android:name="io.gubarsergey.orders.mvvm.OrdersMvvmFragment"
+        android:label="OrdersMvvmFragment"
+        />
 
 
 </navigation>

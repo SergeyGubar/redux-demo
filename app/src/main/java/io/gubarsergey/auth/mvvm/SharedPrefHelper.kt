@@ -2,11 +2,12 @@ package io.gubarsergey.auth.mvvm
 
 import android.content.Context
 import androidx.core.content.edit
+import io.gubarsergey.auth.AuthState
 import timber.log.Timber
 
 interface PrefHelper {
     fun saveToken(token: String)
-    fun getToken(): String?
+    fun getToken(): AuthState.Token?
 }
 
 class SharedPrefHelper(private val context: Context) : PrefHelper {
@@ -23,11 +24,12 @@ class SharedPrefHelper(private val context: Context) : PrefHelper {
         }
     }
 
-    override fun getToken(): String? {
+    override fun getToken(): AuthState.Token? {
         val token = preferences.getString(TOKEN_KEY, null)
         if (token == null) {
             Timber.w("Token is null")
+            return null
         }
-        return token
+        return AuthState.Token(token)
     }
 }

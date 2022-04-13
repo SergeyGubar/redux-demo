@@ -86,7 +86,7 @@
                         </option>
                         <option name="myPositions">
                           <map>
-                            <entry key="goToCustomerOrders">
+                            <entry key="action_authFragment_to_ordersMvvmFragment">
                               <value>
                                 <LayoutPositions />
                               </value>
@@ -96,37 +96,13 @@
                       </LayoutPositions>
                     </value>
                   </entry>
-                  <entry key="availableArtistsFragment">
-                    <value>
-                      <LayoutPositions>
-                        <option name="myPosition">
-                          <Point>
-                            <option name="x" value="12" />
-                            <option name="y" value="12" />
-                          </Point>
-                        </option>
-                      </LayoutPositions>
-                    </value>
-                  </entry>
-                  <entry key="ordersFragment">
+                  <entry key="ordersMvvmFragment">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
                             <option name="x" value="256" />
-                            <option name="y" value="368" />
-                          </Point>
-                        </option>
-                      </LayoutPositions>
-                    </value>
-                  </entry>
-                  <entry key="settingsFragment">
-                    <value>
-                      <LayoutPositions>
-                        <option name="myPosition">
-                          <Point>
-                            <option name="x" value="256" />
-                            <option name="y" value="12" />
+                            <option name="y" value="707" />
                           </Point>
                         </option>
                       </LayoutPositions>

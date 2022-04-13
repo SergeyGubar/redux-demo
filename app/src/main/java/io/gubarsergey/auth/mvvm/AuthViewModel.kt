@@ -21,6 +21,9 @@ class AuthViewModel(
     private val _passwordLiveData = MutableLiveData<String>()
     val passwordLiveData = _passwordLiveData
 
+    private val _navigationEvents = MutableLiveData<AuthFragmentMvvm.GoToMyOrders>()
+    val navigationEvents = _navigationEvents
+
     fun login() {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
@@ -31,6 +34,7 @@ class AuthViewModel(
                     onSuccess = {
                         Timber.d("Auth success. Token: ${it.access_token}")
                         prefHelper.saveToken(it.access_token)
+                        _navigationEvents.postValue(AuthFragmentMvvm.GoToMyOrders)
                     },
                     onFailure = {
                         Timber.e("Failure $it")
