@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'maven-publish'
 }
 
 android {
@@ -39,4 +40,18 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1'
     implementation "io.insert-koin:koin-android:3.0.2"
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+
+                groupId = 'io.github.gubarsergey'
+                artifactId = 'redux-arch'
+                version = '1.0.0'
+            }
+        }
+    }
 }
