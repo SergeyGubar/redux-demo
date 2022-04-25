@@ -11,8 +11,11 @@ import io.gubarsergey.bind
 import io.gubarsergey.click
 import io.gubarsergey.databinding.FragmentAuthBinding
 import io.gubarsergey.redux.operations.Command
+import io.gubarsergey.setTextIfChanged
 
 data class AuthProps(
+    val email: String,
+    val password: String,
     val login: Command,
     val emailChanged: Command.With<String>,
     val passwordChanged: Command.With<String>,
@@ -35,8 +38,13 @@ class AuthFragment : BaseFragmentWithProps<FragmentAuthBinding, AuthProps>() {
     override fun render(props: AuthProps) = with(binding) {
         emailWatcher?.let { emailEditText.removeTextChangedListener(it) }
         passwordWatcher?.let { passwordEditText.removeTextChangedListener(it) }
+
+        emailEditText.setTextIfChanged(props.email)
+        passwordEditText.setTextIfChanged(props.password)
+
         emailWatcher = emailEditText.bind(props.emailChanged)
         passwordWatcher = passwordEditText.bind(props.passwordChanged)
+
         loginButton.click(props.login)
     }
 }

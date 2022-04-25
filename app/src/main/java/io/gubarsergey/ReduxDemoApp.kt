@@ -34,7 +34,10 @@ import timber.log.Timber
 
 class ReduxDemoApp : Application() {
 
-    private lateinit var core: ReduxCore<ReduxAppState>
+    companion object {
+        lateinit var core: ReduxCore<ReduxAppState>
+    }
+
     private val handler = Handler(Looper.getMainLooper())
 
     override fun onCreate() {

@@ -6,11 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import androidx.annotation.StringRes
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
+import io.gubarsergey.base.BaseFragment
 import io.gubarsergey.redux.operations.Command
 
 fun FragmentManager.inTransaction(block: FragmentTransaction.() -> Unit) {
@@ -43,4 +46,14 @@ fun View.show() {
 
 fun View.hide() {
     this.visibility = View.GONE
+}
+
+fun BaseFragment<*>.snackbar(@StringRes message: Int) {
+    Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT).show()
+}
+
+fun EditText.setTextIfChanged(newText: String?) {
+    if (this.text.toString() != newText) {
+        setText(newText)
+    }
 }

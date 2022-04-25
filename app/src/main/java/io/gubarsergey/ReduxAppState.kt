@@ -8,4 +8,13 @@ data class ReduxAppState(
     val auth: AuthState,
     val myOrders: OrdersState,
     val availableArtists: AvailableArtistsState,
-)
+) {
+    companion object {
+        val default
+            get() = ReduxAppState(
+                auth = AuthState.default,
+                myOrders = OrdersState.default,
+                availableArtists = AvailableArtistsState.default
+            )
+    }
+}

@@ -1,5 +1,6 @@
 package io.gubarsergey.di
 
+import io.gubarsergey.artists.mvvm.AvailableArtistsViewModel
 import io.gubarsergey.artists.service.AvailableArtistsAPI
 import io.gubarsergey.auth.mvvm.AuthViewModel
 import io.gubarsergey.auth.mvvm.PrefHelper
@@ -59,5 +60,8 @@ val ordersModule = module {
 val artistsModule = module {
     single<AvailableArtistsAPI> {
         get<Retrofit>().create(AvailableArtistsAPI::class.java)
+    }
+    viewModel {
+        AvailableArtistsViewModel(get(), get())
     }
 }

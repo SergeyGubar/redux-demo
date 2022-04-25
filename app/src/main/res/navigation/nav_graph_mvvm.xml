@@ -20,9 +20,17 @@
     </fragment>
 
     <fragment
+        tools:layout="@layout/fragment_orders_customer"
         android:id="@+id/ordersMvvmFragment"
         android:name="io.gubarsergey.orders.mvvm.OrdersMvvmFragment"
         android:label="OrdersMvvmFragment"
+        />
+
+    <fragment
+        tools:layout="@layout/fragment_artists"
+        android:id="@+id/availableArtistsFragment"
+        android:name="io.gubarsergey.artists.mvvm.AvailableArtistsMvvmFragment"
+        android:label="@string/artists"
         />
 
 

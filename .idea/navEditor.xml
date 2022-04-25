@@ -80,18 +80,30 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="12" />
-                            <option name="y" value="368" />
+                            <option name="x" value="-5" />
+                            <option name="y" value="407" />
                           </Point>
                         </option>
                         <option name="myPositions">
                           <map>
-                            <entry key="action_authFragment_to_ordersMvvmFragment">
+                            <entry key="goToOrdersMvvm">
                               <value>
                                 <LayoutPositions />
                               </value>
                             </entry>
                           </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="availableArtistsMvvmFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="233" />
+                            <option name="y" value="1010" />
+                          </Point>
                         </option>
                       </LayoutPositions>
                     </value>

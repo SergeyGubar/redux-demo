@@ -22,6 +22,9 @@
     <string name="rap">Rap</string>
     <string name="metal">Metal</string>
     <string name="folk">Folk</string>
+    <string name="general_network_error">Unable to reach the server</string>
+    <string name="recent_actions">Recent actions:</string>
+    <string name="clear">Clear</string>
 
 
 </resources>

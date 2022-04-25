@@ -74,6 +74,8 @@ class ReduxCore<AppState>(
         dispatch(action)
     }
 
+
+
     fun <T> bindWith(actionCreator: (T) -> ReduxAction) = Command.With<T> {
         dispatch(actionCreator(it))
     }

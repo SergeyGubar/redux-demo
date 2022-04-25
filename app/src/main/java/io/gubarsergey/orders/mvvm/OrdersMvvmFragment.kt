@@ -16,9 +16,8 @@ class OrdersMvvmFragment : BaseFragment<FragmentOrdersCustomerBinding>() {
     private val viewModel: OrdersViewModel by inject()
     private val ordersAdapter = OrdersRecyclerAdapter()
 
-    override fun getFragmentBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentOrdersCustomerBinding {
-        return FragmentOrdersCustomerBinding.inflate(inflater, container, false)
-    }
+    override fun getFragmentBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentOrdersCustomerBinding =
+        FragmentOrdersCustomerBinding.inflate(inflater, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
