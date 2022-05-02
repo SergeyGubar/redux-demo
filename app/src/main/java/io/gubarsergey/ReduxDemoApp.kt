@@ -22,6 +22,10 @@ import io.gubarsergey.di.utilsModule
 import io.gubarsergey.orders.OrdersConfigurator
 import io.gubarsergey.orders.OrdersMiddleware
 import io.gubarsergey.orders.OrdersState
+import io.gubarsergey.orders.create.CreateOrderConfigurator
+import io.gubarsergey.orders.create.CreateOrderMiddleware
+import io.gubarsergey.orders.create.CreateOrderState
+import io.gubarsergey.orders.create.createOrder
 import io.gubarsergey.orders.orders
 import io.gubarsergey.redux.Middleware
 import io.gubarsergey.redux.ReduxCore
@@ -65,16 +69,13 @@ class ReduxDemoApp : Application() {
 
     private fun redux() {
         core = setupRedux(
-            defaultState = ReduxAppState(
-                auth = AuthState.default,
-                myOrders = OrdersState.default,
-                availableArtists = AvailableArtistsState.default,
-            ),
+            defaultState = ReduxAppState.default,
             applyReducers = { state, action ->
                 ReduxAppState(
                     auth = Reduce.authState(state.auth, action),
                     myOrders = Reduce.orders(state.myOrders, action),
-                    availableArtists = Reduce.availableArtists(state.availableArtists, action)
+                    availableArtists = Reduce.availableArtists(state.availableArtists, action),
+                    createOrder = Reduce.createOrder(state.createOrder, action),
                 )
             },
             runOnUiThread = { action ->
@@ -88,6 +89,7 @@ class ReduxDemoApp : Application() {
                     AuthMiddleware(this),
                     OrdersMiddleware(this),
                     AvailableArtistsMiddleware(this),
+                    CreateOrderMiddleware(this),
                 )
             )
             withConfigurators(
@@ -96,6 +98,7 @@ class ReduxDemoApp : Application() {
                     AuthConfigurator(this),
                     OrdersConfigurator(this),
                     AvailableArtistsConfigurator(this),
+                    CreateOrderConfigurator(this),
                 )
             )
         }

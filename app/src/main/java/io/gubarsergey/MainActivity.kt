@@ -1,28 +1,22 @@
 package io.gubarsergey
 
 import android.hardware.SensorManager
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import android.widget.Button
-import android.widget.ListView
-import androidx.navigation.findNavController
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.squareup.seismic.ShakeDetector
-import io.gubarsergey.auth.ui.AuthFragment
+import io.gubarsergey.artists.ui.AvailableArtistsFragmentDirections
 import io.gubarsergey.auth.ui.AuthFragmentDirections
 import io.gubarsergey.redux.operations.Command
-import org.koin.core.context.loadKoinModules
 
 interface BottomBarController {
     fun showBottomBar()
@@ -47,20 +41,20 @@ class MainActivity : AppCompatActivity(), RoutingOperations, BottomBarController
         val sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
         val sd = ShakeDetector(this)
         sd.start(sensorManager)
-
     }
 
     override fun goTo(destination: Screen) {
 
         runOnUiThread {
             when (destination) {
-                Screen.CustomerOrders -> goToCustomerOrders()
+                Screen.CustomerOrders -> navController.navigate(AuthFragmentDirections.goToCustomerOrders())
+                Screen.CreateOrder    -> navController.navigate(AvailableArtistsFragmentDirections.goToCreateOrder())
             }
         }
     }
 
-    private fun goToCustomerOrders() {
-        navController.navigate(AuthFragmentDirections.goToCustomerOrders())
+    override fun goBack() {
+        navController.popBackStack()
     }
 
     override fun showBottomBar() {
@@ -76,7 +70,6 @@ class MainActivity : AppCompatActivity(), RoutingOperations, BottomBarController
             TimeTravelSheet().show(supportFragmentManager, "MYTAG")
         }
     }
-
 
     class TimeTravelSheet : BottomSheetDialogFragment() {
 

@@ -3,9 +3,12 @@ package io.gubarsergey.artists
 import androidx.fragment.app.Fragment
 import io.gubarsergey.BaseConnector
 import io.gubarsergey.ReduxAppState
+import io.gubarsergey.Router
 import io.gubarsergey.artists.ui.AvailableArtistsFragment
 import io.gubarsergey.artists.ui.AvailableArtistsProps
 import io.gubarsergey.defaultTag
+import io.gubarsergey.orders.create.CreateOrderOpened
+import io.gubarsergey.orders.create.CreateOrderSaveAction
 import io.gubarsergey.redux.ReduxCore
 import io.gubarsergey.redux.configurators.Configurator
 import io.gubarsergey.redux.operations.Command
@@ -48,7 +51,10 @@ class AvailableArtistsConnector(private val core: ReduxCore<ReduxAppState>) : Ba
                     genres = stateArtist.genres,
                     averageRating = stateArtist.ratingInfo.averageRating,
                     ratingCount = stateArtist.ratingInfo.numberOfRatings,
-                    makeAnOrder = Command.nop(),
+                    makeAnOrder = Command {
+                        core.dispatch(CreateOrderOpened(id))
+                        Router.goToCreateOrder()
+                    },
                 )
             }.appliedFilters(appState),
             viewLoaded = core.bind(LoadAvailableArtists),
@@ -80,7 +86,7 @@ class AvailableArtistsConnector(private val core: ReduxCore<ReduxAppState>) : Ba
             shouldFilterByGenre -> filtered.filter {
                 it.genres.containsAll(selectedGenres)
             }
-            else -> filtered
+            else                -> filtered
         }
         return filteredByGenre
     }

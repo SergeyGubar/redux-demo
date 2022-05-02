@@ -32,13 +32,24 @@
         android:name="io.gubarsergey.artists.ui.AvailableArtistsFragment"
         android:label="AvailableArtistsFragment"
         tools:layout="@layout/fragment_artists"
-        />
+        >
+        <action
+            android:id="@+id/goToCreateOrder"
+            app:destination="@id/createOrderFragment"
+            />
+    </fragment>
 
     <fragment
         android:id="@+id/settingsFragment"
         android:name="io.gubarsergey.settings.SettingsFragment"
         android:label="SettingsFragment"
         tools:layout="@layout/fragment_settings"
+        />
+    <fragment
+        android:id="@+id/createOrderFragment"
+        android:name="io.gubarsergey.orders.create.CreateOrderFragment"
+        android:label="CreateOrderFragment"
+        tools:layout="@layout/fragment_create_order"
         />
 
 

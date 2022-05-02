@@ -9,7 +9,7 @@ data class AuthState(
     val token: Token,
 ) {
     companion object {
-        val default get() = AuthState(email = "", password = "", token = Token(""))
+        val default get() = AuthState(email = "serhii.hubar@nure.ua", password = "megubar123", token = Token(""))
     }
 
     data class Token(val value: String) {

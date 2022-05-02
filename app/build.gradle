@@ -46,7 +46,7 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation "io.insert-koin:koin-android:3.0.2"
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2'
-    implementation project(path: ':Redux')
+    implementation 'com.github.SergeyGubar:redux-demo:1.0.0'
     testImplementation 'junit:junit:4.13.2'
     testImplementation "io.mockk:mockk:1.12.3"
     testImplementation "io.strikt:strikt-core:0.34.0"

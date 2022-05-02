@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    >
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/topAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="@string/create_order"
+            style="@style/Widget.MaterialComponents.Toolbar.Primary"
+            />
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <TextView
+        android:id="@+id/customize_order_for_artist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/your_order_for"
+        android:textAppearance="?attr/textAppearanceBody1"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        />
+
+    <TextView
+        android:id="@+id/genresTextView"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?attr/textAppearanceBody2"
+        android:text="@string/select_genres"
+        />
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/genresContainer"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_height="wrap_content"
+        >
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/hipHopChip"
+            android:text="@string/hip_hop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/rapChip"
+            android:text="@string/rap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/metalChip"
+            android:text="@string/metal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/folkChip"
+            android:text="@string/folk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/popChip"
+            android:text="@string/pop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+
+    </com.google.android.material.chip.ChipGroup>
+
+    <TextView
+        android:id="@+id/bpmTextView"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?attr/textAppearanceBody2"
+        android:text="@string/select_bpm"
+        />
+
+    <com.google.android.material.slider.Slider
+        android:id="@+id/bpm_seekbar"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginTop="4dp"
+        android:stepSize="1"
+        android:valueFrom="40"
+        android:valueTo="220"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/commentInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        app:counterMaxLength="160"
+        android:hint="@string/comment"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/commentEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_marginTop="16dp"
+        android:text="@string/select_deadline"
+        android:layout_marginHorizontal="16dp"
+        android:id="@+id/deadlineButton"
+        android:layout_width="match_parent"
+        app:cornerRadius="16dp"
+        android:layout_height="wrap_content"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/saveButton"
+        app:cornerRadius="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginHorizontal="16dp"
+        android:text="@string/save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+</LinearLayout>

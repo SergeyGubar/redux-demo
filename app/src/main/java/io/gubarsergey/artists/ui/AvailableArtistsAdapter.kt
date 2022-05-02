@@ -4,6 +4,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import io.gubarsergey.click
 import io.gubarsergey.databinding.ItemArtistBinding
 import io.gubarsergey.inflater
 
@@ -24,6 +25,7 @@ class AvailableArtistsAdapter : ListAdapter<AvailableArtistsProps.ArtistProps, A
             averageRatingValueTextView.text = item.averageRating.toString()
             ratingsCountValueTextView.text = item.ratingCount.toString()
             profileDescriptionTextView.text = item.profileDescription
+            makeOrderButton.click(item.makeAnOrder)
         }
     }
 }
