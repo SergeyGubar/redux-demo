@@ -4,9 +4,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import io.gubarsergey.auth.AuthState
 import io.gubarsergey.click
 import io.gubarsergey.databinding.ItemArtistBinding
 import io.gubarsergey.inflater
+import io.gubarsergey.visibleIf
 
 class AvailableArtistsAdapter : ListAdapter<AvailableArtistsProps.ArtistProps, AvailableArtistsAdapter.ArtistViewHolder>(DIFF_CALLBACK) {
 
@@ -26,6 +28,7 @@ class AvailableArtistsAdapter : ListAdapter<AvailableArtistsProps.ArtistProps, A
             ratingsCountValueTextView.text = item.ratingCount.toString()
             profileDescriptionTextView.text = item.profileDescription
             makeOrderButton.click(item.makeAnOrder)
+            makeOrderButton.visibleIf(item.userRole == AuthState.UserRole.CUSTOMER)
         }
     }
 }

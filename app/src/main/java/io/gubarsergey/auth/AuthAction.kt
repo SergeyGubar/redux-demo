@@ -6,5 +6,5 @@ data class AuthEmailUpdated(val email: String) : ReduxAction
 data class AuthPasswordUpdated(val password: String) : ReduxAction
 
 object AuthPerformLogin : ReduxAction
-data class AuthSuccess(val token: String) : ReduxAction
+data class AuthSuccess(val token: String, val role: String, val name: String) : ReduxAction
 object AuthFailed : ReduxAction

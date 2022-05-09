@@ -1,5 +1,6 @@
 package io.gubarsergey.orders
 
+import io.gubarsergey.auth.AuthState
 import io.gubarsergey.redux.operations.Command
 
 data class OrdersProps(
@@ -15,10 +16,11 @@ data class OrdersProps(
         val comment: String,
         val bpm: String,
         val genres: List<String>,
-        val goToDetails: Command
+        val goToDetails: Command,
+        val userRole: AuthState.UserRole,
+        val accept: Command,
+        val reject: Command,
     ) {
-
-
 
         override fun equals(other: Any?): Boolean {
             if (this === other) return true
@@ -34,6 +36,7 @@ data class OrdersProps(
             if (comment != other.comment) return false
             if (bpm != other.bpm) return false
             if (genres != other.genres) return false
+            if (userRole != other.userRole) return false
 
             return true
         }
@@ -47,6 +50,7 @@ data class OrdersProps(
             result = 31 * result + comment.hashCode()
             result = 31 * result + bpm.hashCode()
             result = 31 * result + genres.hashCode()
+            result = 31 * result + userRole.hashCode()
             return result
         }
     }

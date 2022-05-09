@@ -1,5 +1,6 @@
 package io.gubarsergey.artists.ui
 
+import io.gubarsergey.auth.AuthState
 import io.gubarsergey.redux.operations.Command
 
 data class AvailableArtistsProps(
@@ -32,6 +33,7 @@ data class AvailableArtistsProps(
         val ratingCount: Int,
         val email: String,
         val makeAnOrder: Command,
+        val userRole: AuthState.UserRole,
     ) {
 
         override fun equals(other: Any?): Boolean {

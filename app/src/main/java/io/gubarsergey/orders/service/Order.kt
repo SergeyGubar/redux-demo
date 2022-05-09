@@ -12,7 +12,7 @@ data class Order(
     @field:Json(name = "datePlaced") val datePlaced: String,
     @field:Json(name = "deadline") val deadline: String,
     @field:Json(name = "genre") val genre: List<String>,
-    @field:Json(name = "resultUrl") val resultUrl: String,
+    @field:Json(name = "resultUrl") val resultUrl: String?,
     @field:Json(name = "status") val status: String,
-    @field:Json(name = "userId") val userId: String
+    @field:Json(name = "userId") val userId: String,
 )

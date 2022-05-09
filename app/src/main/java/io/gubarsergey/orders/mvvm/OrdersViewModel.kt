@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import io.gubarsergey.auth.AuthState
 import io.gubarsergey.auth.mvvm.PrefHelper
 import io.gubarsergey.orders.OrderStatus
 import io.gubarsergey.orders.OrdersProps
@@ -55,7 +56,10 @@ class OrdersViewModel(
                 bpm = it.order.bpm,
                 genres = it.order.genre,
                 goToDetails = Command(
-                    action = {})
+                    action = {}),
+                userRole = AuthState.UserRole.CUSTOMER,
+                accept = Command.nop(),
+                reject = Command.nop(),
             )
         }
     }

@@ -10,7 +10,6 @@ import io.gubarsergey.BottomBarController
 import io.gubarsergey.base.BaseFragmentWithProps
 import io.gubarsergey.databinding.FragmentOrdersCustomerBinding
 import io.gubarsergey.verticalLinearLayoutManager
-import timber.log.Timber
 
 class OrdersFragment : BaseFragmentWithProps<FragmentOrdersCustomerBinding, OrdersProps>() {
 
@@ -34,7 +33,6 @@ class OrdersFragment : BaseFragmentWithProps<FragmentOrdersCustomerBinding, Orde
     }
 
     override fun render(props: OrdersProps) {
-        Timber.d("render $props")
         adapter.submitList(props.orders)
     }
 }

@@ -7,6 +7,15 @@
     android:paddingTop="16dp"
     >
 
+    <LinearLayout
+        android:id="@+id/guardsActions"
+        android:layout_marginHorizontal="16dp"
+        android:paddingBottom="8dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

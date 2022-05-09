@@ -2,6 +2,10 @@ package io.gubarsergey.orders
 
 import io.gubarsergey.BaseConnector
 import io.gubarsergey.ReduxAppState
+import io.gubarsergey.Router
+import io.gubarsergey.auth.AuthState
+import io.gubarsergey.orders.confirm.GoToOrderConfirmation
+import io.gubarsergey.orders.result.OpenSendOrderResult
 import io.gubarsergey.redux.ReduxCore
 import io.gubarsergey.redux.operations.Command
 
@@ -12,7 +16,7 @@ class OrdersConnector(private val core: ReduxCore<ReduxAppState>) : BaseConnecto
             orders = appState.myOrders.byId.map { (id, order) ->
                 OrdersProps.Order(
                     id = id,
-                    artistName = order.artistName,
+                    artistName = order.userName,
                     placedDate = order.placedDate,
                     deadline = order.deadLine,
                     status = OrderStatus.fromString(order.status),
@@ -20,8 +24,22 @@ class OrdersConnector(private val core: ReduxCore<ReduxAppState>) : BaseConnecto
                     bpm = order.bpm,
                     genres = order.genres,
                     goToDetails = Command(action = {
-                        TODO()
-                    })
+                        if (appState.auth.userRole == AuthState.UserRole.CUSTOMER) {
+                            if (OrderStatus.fromString(order.status) == OrderStatus.AwaitingConfirmation) {
+                                core.dispatch(GoToOrderConfirmation(id))
+                                Router.goToOrderConfirmation()
+                            }
+                        }
+                        if (appState.auth.userRole == AuthState.UserRole.ARTIST) {
+                            if (OrderStatus.fromString(order.status) == OrderStatus.InProgress) {
+                                core.dispatch(OpenSendOrderResult(id))
+                                Router.goToSendOrderResult()
+                            }
+                        }
+                    }),
+                    userRole = appState.auth.userRole,
+                    accept = core.bind(ArtistAcceptOrder(id)),
+                    reject = core.bind(ArtistRejectOrder(id))
                 )
             }
         )

@@ -31,11 +31,10 @@ class AuthMiddleware(
                         result.fold(
                             onSuccess = {
                                 Router.goToOrdersCustomer()
-                                core.dispatch(AuthSuccess(it.access_token))
+                                core.dispatch(AuthSuccess(it.access_token, it.role, it.name))
                             },
                             onFailure = { core.dispatch(AuthFailed) }
                         )
-                        Timber.d("Result $result")
                     }
                 }
             }

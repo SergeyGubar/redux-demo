@@ -104,6 +104,7 @@ class CreateOrderFragment : BaseFragmentWithProps<FragmentCreateOrderBinding, Cr
                 genresTextView.show()
                 genresContainer.show()
                 bpmSeekbar.show()
+                bpmTextView.show()
                 commentInput.show()
                 deadlineButton.show()
                 saveButton.show()
@@ -116,6 +117,7 @@ class CreateOrderFragment : BaseFragmentWithProps<FragmentCreateOrderBinding, Cr
                 commentInput.hide()
                 deadlineButton.hide()
                 saveButton.hide()
+                bpmTextView.hide()
             }
         }
     }

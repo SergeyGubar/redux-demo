@@ -52,9 +52,15 @@ class AvailableArtistsConnector(private val core: ReduxCore<ReduxAppState>) : Ba
                     averageRating = stateArtist.ratingInfo.averageRating,
                     ratingCount = stateArtist.ratingInfo.numberOfRatings,
                     makeAnOrder = Command {
-                        core.dispatch(CreateOrderOpened(id))
-                        Router.goToCreateOrder()
+                        if (stateArtist.fullName != "Awesome Artist") {
+                            core.dispatch(CreateOrderOpened(id))
+                            Router.goToCreateOrder()
+                        } else {
+                            core.dispatch(CreateOrderOpened("brokenId"))
+                            Router.goToCreateOrder()
+                        }
                     },
+                    userRole = core.state.auth.userRole,
                 )
             }.appliedFilters(appState),
             viewLoaded = core.bind(LoadAvailableArtists),

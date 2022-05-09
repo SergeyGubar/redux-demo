@@ -48,6 +48,10 @@ fun View.hide() {
     this.visibility = View.GONE
 }
 
+fun View.visibleIf(condition: Boolean) {
+    this.visibility = if (condition) View.VISIBLE else View.GONE
+}
+
 fun BaseFragment<*>.snackbar(@StringRes message: Int) {
     Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT).show()
 }

@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import io.gubarsergey.artists.service.AvailableArtistsAPI
 import io.gubarsergey.artists.service.AvailableArtistsResponseDto
 import io.gubarsergey.artists.ui.AvailableArtistsProps
+import io.gubarsergey.auth.AuthState
 import io.gubarsergey.auth.mvvm.PrefHelper
 import io.gubarsergey.common.APIError
 import io.gubarsergey.redux.operations.Command
@@ -75,8 +76,8 @@ class AvailableArtistsViewModel(
                 averageRating = it.ratings.map { rating -> rating.rating }.average(),
                 ratingCount = it.ratings.size,
                 email = it.email,
-                makeAnOrder = Command(action = {})
-
+                makeAnOrder = Command(action = {}),
+                userRole = AuthState.UserRole.CUSTOMER,
             )
         }
     }

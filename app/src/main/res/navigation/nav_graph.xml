@@ -25,7 +25,16 @@
         tools:layout="@layout/fragment_orders_customer"
         android:name="io.gubarsergey.orders.OrdersFragment"
         android:label="@string/your_orders"
-        />
+        >
+        <action
+            android:id="@+id/openOrderConfirmation"
+            app:destination="@id/orderConfirmationFragment"
+            />
+        <action
+            android:id="@+id/openSendOrderResult"
+            app:destination="@id/sendOrderResultFragment"
+            />
+    </fragment>
 
     <fragment
         android:id="@+id/availableArtistsFragment"
@@ -50,6 +59,18 @@
         android:name="io.gubarsergey.orders.create.CreateOrderFragment"
         android:label="CreateOrderFragment"
         tools:layout="@layout/fragment_create_order"
+        />
+    <fragment
+        android:id="@+id/orderConfirmationFragment"
+        android:name="io.gubarsergey.orders.confirm.OrderConfirmationFragment"
+        tools:layout="@layout/fragment_confirm_order"
+        android:label="OrderConfirmationFragment"
+        />
+    <fragment
+        android:id="@+id/sendOrderResultFragment"
+        android:name="io.gubarsergey.orders.result.SendOrderResultFragment"
+        android:label="SendOrderResultFragment"
+        tools:layout="@layout/fragment_send_order_result"
         />
 
 

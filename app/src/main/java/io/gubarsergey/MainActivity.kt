@@ -1,11 +1,14 @@
 package io.gubarsergey
 
+import android.graphics.Color
 import android.hardware.SensorManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
@@ -16,7 +19,11 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.squareup.seismic.ShakeDetector
 import io.gubarsergey.artists.ui.AvailableArtistsFragmentDirections
 import io.gubarsergey.auth.ui.AuthFragmentDirections
+import io.gubarsergey.guards.GuardAction
+import io.gubarsergey.orders.OrdersFragmentDirections
 import io.gubarsergey.redux.operations.Command
+import timber.log.Timber
+import java.security.Guard
 
 interface BottomBarController {
     fun showBottomBar()
@@ -48,7 +55,10 @@ class MainActivity : AppCompatActivity(), RoutingOperations, BottomBarController
         runOnUiThread {
             when (destination) {
                 Screen.CustomerOrders -> navController.navigate(AuthFragmentDirections.goToCustomerOrders())
-                Screen.CreateOrder    -> navController.navigate(AvailableArtistsFragmentDirections.goToCreateOrder())
+                Screen.CreateOrder -> navController.navigate(AvailableArtistsFragmentDirections.goToCreateOrder())
+                Screen.OrderConfirmation -> navController.navigate(OrdersFragmentDirections.openOrderConfirmation())
+                Screen.SendOrderResult -> navController.navigate(OrdersFragmentDirections.openSendOrderResult())
+                Screen.Login -> navController.popBackStack(R.id.authFragment, false)
             }
         }
     }
@@ -101,8 +111,19 @@ class MainActivity : AppCompatActivity(), RoutingOperations, BottomBarController
                             dismiss()
                         }
                     )
-                }
+                }.reversed()
             )
+
+            ReduxDemoApp.core.store.actionHistory.filter { it.action is GuardAction }.forEachIndexed { index, element ->
+                val guardErrorTextView = TextView(context)
+                guardErrorTextView.text =
+                    "${index + 1}. GUARD ${element.action.javaClass.simpleName} worked.\n${(element.action as GuardAction).description()}"
+
+                guardErrorTextView.setTextColor(Color.RED)
+                view.findViewById<LinearLayout>(R.id.guardsActions).addView(
+                    guardErrorTextView
+                )
+            }
 
             view.findViewById<Button>(R.id.clearButton).setOnClickListener {
                 adapter.submitList(listOf())
