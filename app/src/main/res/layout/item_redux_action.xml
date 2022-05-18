@@ -8,11 +8,13 @@
     >
 
     <TextView
+        android:textStyle="bold"
         tools:text="Some Data loaded"
         android:textAppearance="?attr/textAppearanceBody2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/actionNameTextView"
+        android:maxLines="3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginStart="16dp"

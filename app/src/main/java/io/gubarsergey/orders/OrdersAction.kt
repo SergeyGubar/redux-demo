@@ -7,7 +7,9 @@ data class CustomerOrdersLoaded(
     val orders: List<MyOrderDto>
 ) : ReduxAction
 
-object OrdersLoadFailed : ReduxAction
+data class ChangeOrdersLoadingStatus(
+    val status: OrdersState.LoadingStatus
+) : ReduxAction
 
 object LoadMyOrders : ReduxAction
 

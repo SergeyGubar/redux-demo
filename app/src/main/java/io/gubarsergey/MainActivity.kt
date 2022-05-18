@@ -77,7 +77,7 @@ class MainActivity : AppCompatActivity(), RoutingOperations, BottomBarController
 
     override fun hearShake() {
         if (supportFragmentManager.findFragmentByTag("MYTAG") == null) {
-            TimeTravelSheet().show(supportFragmentManager, "MYTAG")
+//            TimeTravelSheet().show(supportFragmentManager, "MYTAG")
         }
     }
 

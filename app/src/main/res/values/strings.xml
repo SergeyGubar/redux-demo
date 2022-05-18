@@ -45,5 +45,8 @@
     <string name="name">Name:</string>
     <string name="role">Role:</string>
     <string name="logout">Logout</string>
+    <string name="register_customer">Register (Customer)</string>
+    <string name="register_artist">Register (artist)</string>
+    <string name="something_went_wrong_orders">Something went wrong during loading your orders. Please, try again</string>
 
 </resources>

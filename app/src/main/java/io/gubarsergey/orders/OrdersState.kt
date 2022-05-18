@@ -5,10 +5,18 @@ import io.gubarsergey.redux.redux.Reducer
 
 data class OrdersState(
     val byId: MutableMap<String, Order>,
+    val loadingStatus: LoadingStatus
 ) {
 
+    enum class LoadingStatus {
+        IDLE,
+        IN_PROGRESS,
+        SUCCESS,
+        FAILED,
+    }
+
     companion object {
-        val default get() = OrdersState(mutableMapOf())
+        val default get() = OrdersState(mutableMapOf(), LoadingStatus.IDLE)
     }
 
     data class Order(
@@ -27,7 +35,7 @@ data class OrdersState(
 
 val Reduce.orders by Reducer<OrdersState> { state, action ->
     when (action) {
-        is CustomerOrdersLoaded -> {
+        is CustomerOrdersLoaded      -> {
 
             action.orders.forEach {
                 if (it.to != null) {
@@ -62,6 +70,7 @@ val Reduce.orders by Reducer<OrdersState> { state, action ->
 
             state
         }
-        else                    -> state
+        is ChangeOrdersLoadingStatus -> state.copy(loadingStatus = action.status)
+        else                         -> state
     }
 }

@@ -6,6 +6,7 @@ import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import io.gubarsergey.BottomBarController
 import io.gubarsergey.base.BaseFragmentWithProps
 import io.gubarsergey.databinding.FragmentOrdersCustomerBinding
@@ -32,7 +33,33 @@ class OrdersFragment : BaseFragmentWithProps<FragmentOrdersCustomerBinding, Orde
         }, 300)
     }
 
-    override fun render(props: OrdersProps) {
-        adapter.submitList(props.orders)
+    override fun render(props: OrdersProps) = with(binding) {
+        swipeRefreshLayout.setOnRefreshListener {
+            props.viewLoaded()
+        }
+        when (props.orders) {
+            OrdersProps.Orders.Idle          -> {
+                myOrdersRecycler.isVisible = true
+                swipeRefreshLayout.isVisible = true
+                errorTextView.isVisible = false
+            }
+            is OrdersProps.Orders.Loaded     -> {
+                myOrdersRecycler.isVisible = true
+                swipeRefreshLayout.isRefreshing = false
+                adapter.submitList(props.orders.orders.reversed())
+                errorTextView.isVisible = false
+            }
+            OrdersProps.Orders.Loading       -> {
+                myOrdersRecycler.isVisible = false
+                swipeRefreshLayout.isRefreshing = true
+                errorTextView.isVisible = false
+            }
+            OrdersProps.Orders.LoadingFailed -> {
+                myOrdersRecycler.isVisible = false
+                swipeRefreshLayout.isRefreshing = false
+                errorTextView.isVisible = true
+            }
+        }
+
     }
 }

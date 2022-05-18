@@ -20,6 +20,7 @@ class OrdersMiddleware(private val core: ReduxCore<ReduxAppState>) : Middleware 
     override fun apply(action: ReduxAction) {
         when (action) {
             is LoadMyOrders -> {
+                core.dispatch(ChangeOrdersLoadingStatus(OrdersState.LoadingStatus.IN_PROGRESS))
                 launch {
                     withContext(Dispatchers.IO) {
                         val token = core.state.auth.token.bearerFormatted
@@ -28,10 +29,11 @@ class OrdersMiddleware(private val core: ReduxCore<ReduxAppState>) : Middleware 
                         }
                         result.fold(
                             onSuccess = {
+                                core.dispatch(ChangeOrdersLoadingStatus(OrdersState.LoadingStatus.SUCCESS))
                                 core.dispatch(CustomerOrdersLoaded(it.orders))
                             },
                             onFailure = {
-                                core.dispatch(OrdersLoadFailed)
+                                core.dispatch(ChangeOrdersLoadingStatus(OrdersState.LoadingStatus.FAILED))
                             }
                         )
                     }

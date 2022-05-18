@@ -5,8 +5,16 @@ import io.gubarsergey.redux.operations.Command
 
 data class OrdersProps(
     val viewLoaded: Command,
-    val orders: List<Order>
+    val orders: Orders
 ) {
+
+    sealed class Orders {
+        object Idle : Orders()
+        object Loading : Orders()
+        data class Loaded(val orders: List<Order>) : Orders()
+        object LoadingFailed : Orders()
+    }
+
     data class Order(
         val id: String,
         val artistName: String,

@@ -1,5 +1,6 @@
 package io.gubarsergey.orders
 
+import android.graphics.Color
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -34,6 +35,13 @@ class OrdersRecyclerAdapter : ListAdapter<OrdersProps.Order, OrdersRecyclerAdapt
             genresTextView.text = props.genres.joinToString(" ")
             commentTextView.text = props.comment
             statusTextView.text = props.status.toString()
+            statusTextView.setTextColor(
+                when (props.status) {
+                    OrderStatus.Completed -> Color.GREEN
+                    OrderStatus.Rejected  -> Color.RED
+                    else                  -> Color.BLACK
+                }
+            )
             acceptRejectContainer.visibleIf(props.userRole == AuthState.UserRole.ARTIST && props.status == OrderStatus.Placed)
             approveButton.click(props.accept)
             rejectButton.click(props.reject)

@@ -42,7 +42,7 @@ val Reduce.authState by Reducer<AuthState> { state, action ->
                 "artist" -> AuthState.UserRole.ARTIST
                 else     -> AuthState.UserRole.CUSTOMER
             },
-            name = action.name,
+            name = action.name
         )
         is Logout              -> AuthState.default
         else                   -> state
